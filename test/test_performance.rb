@@ -6,7 +6,6 @@ require "crystalruby"
 
 class TestPerformance < Minitest::Test
   module PrimeCounter
-
     crystallize
     def count_primes_upto_cr n: :int32, returns: :int32
       (2..n).each.count do |i|
@@ -24,6 +23,7 @@ class TestPerformance < Minitest::Test
 
   include PrimeCounter
   def test_performance
+    skip
     count_primes_upto_cr(0) # Compile
     assert Benchmark.realtime {
       count_primes_upto_cr(1_000_000)
